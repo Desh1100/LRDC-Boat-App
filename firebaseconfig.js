@@ -1,7 +1,10 @@
-import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+import { getDatabase } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
 
+//  Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAtHgnVsamgf76y3cE-1OBFNmGECbcbhsE",
   authDomain: "lrdc-boat-app.firebaseapp.com",
@@ -13,8 +16,15 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const authentication = getAuth(app);
-const db = getFirestore(app);
+let app;
+if (!firebase.apps.length) {
+  app = firebase.initializeApp(firebaseConfig);
+} else {
+  app = firebase.app();
+}
 
-export { app, authentication, db };
+const auth = firebase.auth(); //for a authentication
+const db = getDatabase();
+const fdb = getFirestore(app);
+
+export { app, auth, db };

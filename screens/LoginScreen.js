@@ -3,6 +3,8 @@ import { useState } from "react";
 import { TouchableOpacity, Alert, KeyboardAvoidingView } from "react-native";
 import { View, StyleSheet, Image, Text } from "react-native";
 import { TextInput, Button } from "react-native-paper";
+import { auth } from "../firebaseconfig";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -16,10 +18,10 @@ function LoginScreen({ navigation }) {
       try {
         // Sign in the user with email and password
         const user = await auth.signInWithEmailAndPassword(email, password);
-        if (email === "Admin@gmail.com" && password === "1234") {
-          navigation.navigate("GetTour");
-        } else if (email === "cd@gmail.com" && password === "12345678") {
-          navigation.navigate("GetStart");
+        if (email === "admin@gmail.com" && password === "12345678") {
+          navigation.navigate("OHome");
+        } else if (email === "oic@gmail.com" && password === "12345678") {
+          navigation.navigate("OICHome");
         } else {
           Alert.alert(
             "Error",
