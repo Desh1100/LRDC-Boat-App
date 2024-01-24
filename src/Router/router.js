@@ -6,6 +6,7 @@ import Splash from "../../screens/Splash";
 import LoginScreen from "../../screens/LoginScreen";
 import OfficerHome from "../../screens/OfficerHome";
 import OICHome from "../../screens/OICHome";
+import OfficerMap from "../../screens/OfficerMap";
 
 const Stack = createNativeStackNavigator();
 function Router(props) {
@@ -31,6 +32,11 @@ function Router(props) {
           name="OICHome"
           options={{ headerShown: false }}
           component={OICHome}
+        />
+        <Stack.Screen
+          name="OfficerMap"
+          options={{ headerShown: false }}
+          component={OfficerMap}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,9 +1,13 @@
 import * as React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { Image } from "expo-image";
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
-const OfficerHome = () => {
+const OfficerHome = ({ navigation }) => {
   return (
     <View style={styles.bg}>
       <View style={styles.headerA}>
@@ -20,8 +24,29 @@ const OfficerHome = () => {
         </View>
       </View>
 
-      <View style={{ height: "20%", width: "20%", backgroundColor: "#000" }} />
-      <View style={{ height: "20%", width: "20%", backgroundColor: "#000" }} />
+      <View style={styles.row}>
+        <TouchableOpacity style={styles.box}>
+          <Ionicons name="bookmarks" size={65} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.box}>
+          <FontAwesome name="calendar" size={63} color="black" />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.row}>
+        <TouchableOpacity
+          style={styles.box}
+          onPress={() => navigation.navigate("OfficerMap")}
+        >
+          <MaterialCommunityIcons
+            name="map-marker-check"
+            size={75}
+            color="black"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.box}>
+          <MaterialIcons name="message" size={65} color="black" />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -38,6 +63,7 @@ const styles = StyleSheet.create({
     top: "30%",
     width: "20%",
     height: "65%",
+    marginLeft: 10,
   },
 
   bg: {
@@ -46,6 +72,20 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     overflow: "hidden",
+    alignItems: "center",
+  },
+  row: {
+    flexDirection: "row",
+  },
+  box: {
+    width: "35%", // Set box width to half of the screen width
+    height: 200, // Set a fixed height for the boxes
+    borderWidth: 1,
+    borderColor: "black",
+    margin: "5%",
+    top: "10%",
+    borderRadius: 25,
+    justifyContent: "center",
     alignItems: "center",
   },
 });
