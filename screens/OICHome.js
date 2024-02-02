@@ -5,19 +5,20 @@ import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
 
 const IPhone1415ProMax2 = () => {
   return (
-    <View style={styles.iphone1415ProMax4}>
-      <View style={styles.iphone1415ProMax4Child} />
-      <Image
-        style={styles.lrdcLogo3}
-        contentFit="cover"
-        source={require("../assets/lrdc-logo-2.png")}
-      />
-      <Text style={[styles.lrdcBoatApp, styles.lrdcBoatAppTypo]}>
-        LRDC BOAT APP
-      </Text>
-      <Text
-        style={[styles.reservations, styles.lrdcBoatAppTypo]}
-      >{`reservations  `}</Text>
+    <View style={styles.background}>
+      <View style={styles.headerA}>
+        <Image
+          style={styles.lrdcLogo3}
+          contentFit="cover"
+          source={require("../assets/lrdc-logo-2.png")}
+        />
+        <View style={{ left: "25%", top: -20 }}>
+          <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+            LRDC BOAT APP
+          </Text>
+          <Text>Home</Text>
+        </View>
+      </View>
       <View style={styles.iphone1415ProMax4Item} />
       <View style={[styles.iphone1415ProMax4Inner, styles.iphone1415Layout]} />
       <View style={[styles.rectangleView, styles.iphone1415Layout]} />
@@ -27,6 +28,18 @@ const IPhone1415ProMax2 = () => {
 };
 
 const styles = StyleSheet.create({
+  headerA: {
+    borderBottomRightRadius: Border.br_38xl,
+    width: "100%",
+    height: "18%",
+    backgroundColor: Color.colorPalegoldenrod,
+  },
+  lrdcLogo3: {
+    top: "30%",
+    width: "20%",
+    height: "65%",
+    marginLeft: 10,
+  },
   lrdcBoatAppTypo: {
     textAlign: "left",
     color: Color.colorBlack,
@@ -89,7 +102,7 @@ const styles = StyleSheet.create({
   iphone1415ProMax4Child1: {
     top: 578,
   },
-  iphone1415ProMax4: {
+  background: {
     borderRadius: Border.br_6xl,
     backgroundColor: Color.colorFloralwhite_100,
     flex: 1,
