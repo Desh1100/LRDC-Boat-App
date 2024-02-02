@@ -73,7 +73,7 @@ function LoginScreen({ navigation }) {
       <Image
         style={{
           height: "7%",
-          width: "55%",
+          width: "50%",
           marginTop: "40%",
         }}
         source={require("../assets/1543918947img311.png")}

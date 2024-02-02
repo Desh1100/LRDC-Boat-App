@@ -25,7 +25,7 @@ const Splash = () => {
       <Image
         style={{
           height: 50,
-          width: "60%",
+          width: "55%",
           marginTop: "90%",
         }}
         // resizeMode="cover"
