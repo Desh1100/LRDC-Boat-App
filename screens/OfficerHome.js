@@ -28,7 +28,10 @@ const OfficerHome = ({ navigation }) => {
         <TouchableOpacity style={styles.box}>
           <Ionicons name="bookmarks" size={65} color="black" />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.box}>
+        <TouchableOpacity
+          style={styles.box}
+          onPress={() => navigation.navigate("OfficerCalender")}
+        >
           <FontAwesome name="calendar" size={63} color="black" />
         </TouchableOpacity>
       </View>
