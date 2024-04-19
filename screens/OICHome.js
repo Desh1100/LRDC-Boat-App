@@ -12,7 +12,7 @@ const IPhone1415ProMax2 = () => {
           contentFit="cover"
           source={require("../assets/lrdc-logo-2.png")}
         />
-        <View style={{ left: "25%", top: -20 }}>
+        <View style={{ left: "28%", top: "50%" }}>
           <Text style={{ fontSize: 18, fontWeight: "bold" }}>
             LRDC BOAT APP
           </Text>
@@ -31,11 +31,12 @@ const styles = StyleSheet.create({
   headerA: {
     borderBottomRightRadius: Border.br_38xl,
     width: "100%",
-    height: "18%",
+    height: "20%",
     backgroundColor: Color.colorPalegoldenrod,
+    // flexDirection: "row",
   },
   lrdcLogo3: {
-    top: "30%",
+    top: "20%",
     width: "20%",
     height: "65%",
     marginLeft: 10,
@@ -67,7 +68,7 @@ const styles = StyleSheet.create({
   },
   lrdcLogo3: {
     marginLeft: -200,
-    top: 66,
+    top: 50,
     width: 105,
     height: 92,
     left: "50%",
