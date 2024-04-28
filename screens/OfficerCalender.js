@@ -1,38 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, Button, Modal, FlatList } from "react-native";
 import { Calendar } from "react-native-calendars";
+import { fdb } from "../firebaseconfig"; // Import your Firestore instance
+import { doc, getDocs, collection, getDoc } from "firebase/firestore";
 
 const CalendarScreen = () => {
-  // State for managing modal visibility and selected date
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
   const [todoList, setTodoList] = useState([]);
+  const [markedDates, setMarkedDates] = useState({});
 
-  // Dummy data for to-do list
-  const initialTodoList = {
-    "2024-04-20": ["Buy groceries", "Call mom"],
-    "2024-04-22": ["Doctor's appointment", "Meeting with team"],
-    "2024-04-23": ["Gym session", "Finish project"],
+  useEffect(() => {
+    fetchMarkedDates();
+  }, []);
+
+  const fetchMarkedDates = async () => {
+    try {
+      const datesSnapshot = await getDocs(collection(fdb, "Dates"));
+      const markedDates = {};
+      datesSnapshot.forEach((doc) => {
+        const date = doc.id.split(".").reverse().join("-");
+        markedDates[date] = {
+          selected: true,
+          marked: true,
+          selectedColor: "blue",
+        };
+      });
+      setMarkedDates(markedDates);
+    } catch (error) {
+      console.error("Error fetching marked dates:", error);
+    }
   };
 
-  // Define marked dates with different styles
-  const markedDates = {
-    "2024-04-20": { selected: true, marked: true, selectedColor: "blue" },
-    "2024-04-22": { selected: true, marked: true, selectedColor: "blue" },
-    "2024-04-23": { marked: true, dotColor: "green" },
-  };
-
-  // Handle day press event
   const handleDayPress = (day) => {
-    console.log("Selected day:", day);
     setSelectedDate(day.dateString);
-    // Set to-do list for the selected date
-    setTodoList(initialTodoList[day.dateString] || []);
-    // Show modal
+    fetchTodoList(day.dateString);
     setModalVisible(true);
   };
 
-  // Close modal
+  const fetchTodoList = async (dateString) => {
+    const reversedDate = dateString.split("-").reverse().join(".");
+    console.log(reversedDate);
+    try {
+      const docRef = doc(fdb, "Dates", reversedDate);
+      const docSnap = await getDoc(docRef);
+      console.log(docSnap);
+
+      if (docSnap.exists()) {
+        setTodoList(docSnap.data().dataa || []);
+      } else {
+        setTodoList([]);
+      }
+    } catch (error) {
+      console.error("Error fetching todo list:", error);
+    }
+  };
+
   const closeModal = () => {
     setModalVisible(false);
   };
@@ -45,10 +68,9 @@ const CalendarScreen = () => {
         theme={styles.calendarTheme}
         markedDates={markedDates}
         minDate="2024-04-01"
-        maxDate="2024-04-30"
+        maxDate="2025-01-30"
       />
 
-      {/* Modal to display to-do list */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -57,8 +79,7 @@ const CalendarScreen = () => {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>To-Do List for {selectedDate}</Text>
-            {/* Display to-do list using FlatList */}
+            <Text style={styles.modalTitle}>Bookings {selectedDate}</Text>
             <FlatList
               data={todoList}
               keyExtractor={(item, index) => index.toString()}
@@ -66,7 +87,6 @@ const CalendarScreen = () => {
                 <Text style={styles.todoItem}>{item}</Text>
               )}
             />
-            {/* Close modal button */}
             <Button title="Close" onPress={closeModal} />
           </View>
         </View>
@@ -95,9 +115,7 @@ const styles = StyleSheet.create({
     disabledArrowColor: "#d9e1e8",
     monthTextColor: "blue",
     indicatorColor: "blue",
-    textDayFontFamily: "monospace",
-    textMonthFontFamily: "monospace",
-    textDayHeaderFontFamily: "monospace",
+
     textDayFontWeight: "300",
     textMonthFontWeight: "bold",
     textDayHeaderFontWeight: "300",

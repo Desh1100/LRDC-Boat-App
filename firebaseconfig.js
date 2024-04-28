@@ -27,4 +27,4 @@ const auth = firebase.auth(); //for a authentication
 const db = getDatabase();
 const fdb = getFirestore(app);
 
-export { app, auth, db };
+export { app, auth, db, fdb };
