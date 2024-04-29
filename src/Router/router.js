@@ -8,6 +8,7 @@ import OfficerHome from "../../screens/OfficerHome";
 import OICHome from "../../screens/OICHome";
 import OfficerMap from "../../screens/OfficerMap";
 import OfficerCalender from "../../screens/OfficerCalender";
+import Bookings from "../../screens/Bookings";
 
 const Stack = createNativeStackNavigator();
 function Router(props) {
@@ -43,6 +44,11 @@ function Router(props) {
           name="OfficerCalender"
           options={{ headerShown: false }}
           component={OfficerCalender}
+        />
+        <Stack.Screen
+          name="Bookings"
+          options={{ headerShown: false }}
+          component={Bookings}
         />
       </Stack.Navigator>
     </NavigationContainer>

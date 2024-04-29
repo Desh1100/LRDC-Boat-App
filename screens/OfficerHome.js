@@ -25,7 +25,10 @@ const OfficerHome = ({ navigation }) => {
       </View>
 
       <View style={styles.row}>
-        <TouchableOpacity style={styles.box}>
+        <TouchableOpacity
+          style={styles.box}
+          onPress={() => navigation.navigate("Bookings")}
+        >
           <Ionicons name="bookmarks" size={65} color="black" />
         </TouchableOpacity>
         <TouchableOpacity
