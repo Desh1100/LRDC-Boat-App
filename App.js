@@ -12,5 +12,5 @@ import Router from "./src/Router/router";
 import Bookings from "./screens/Bookings";
 
 export default function App() {
-  return <Bookings />;
+  return <Router />;
 }

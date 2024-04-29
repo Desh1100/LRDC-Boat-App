@@ -2,7 +2,7 @@ import * as React from "react";
 import { Image } from "expo-image";
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
 import { fdb } from "../firebaseconfig";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import {
   StyleSheet,
   View,
@@ -10,6 +10,7 @@ import {
   FlatList,
   TouchableOpacity,
   Button,
+  Alert,
 } from "react-native";
 
 const Bookings = ({ navigation }) => {
@@ -32,6 +33,38 @@ const Bookings = ({ navigation }) => {
 
     fetchBookings();
   }, []);
+
+  // Function to delete a booking by ID
+  const deleteBooking = async (bookingId) => {
+    // Show confirmation dialog before deletion
+    Alert.alert(
+      "Confirm Deletion",
+      "Are you sure you want to delete this booking?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          onPress: async () => {
+            try {
+              await deleteDoc(doc(fdb, "Dates", bookingId));
+              console.log("Document successfully deleted!");
+              // After deletion, update the bookings state to reflect the change
+              setBookings((prevBookings) =>
+                prevBookings.filter((booking) => booking.id !== bookingId)
+              );
+            } catch (error) {
+              console.error("Error deleting document: ", error);
+            }
+          },
+          style: "destructive",
+        },
+      ],
+      { cancelable: false }
+    );
+  };
   return (
     <View style={styles.background}>
       <View style={styles.headerA}>
@@ -76,6 +109,7 @@ const Bookings = ({ navigation }) => {
                   Date: {item.date}
                 </Text>
                 <Text>Name: {item.name}</Text>
+                <Text>Phone Number: {item.telNum}</Text>
                 <View style={{ left: 220, flexDirection: "row" }}>
                   <TouchableOpacity
                     onPress={() => {
@@ -90,16 +124,19 @@ const Bookings = ({ navigation }) => {
                     <Button title="Edit" color="blue" />
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => {
-                      console.log("Delete pressed for item:", item);
-                    }}
                     style={{
                       marginLeft: 5,
                       backgroundColor: "white",
                       borderRadius: 7,
                     }}
                   >
-                    <Button title="Delete" color="red" />
+                    <Button
+                      title="Delete"
+                      color="red"
+                      onPress={() => {
+                        deleteBooking(item.date);
+                      }}
+                    />
                   </TouchableOpacity>
                 </View>
               </View>
