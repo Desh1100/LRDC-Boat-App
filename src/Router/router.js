@@ -10,6 +10,7 @@ import OfficerMap from "../../screens/OfficerMap";
 import OfficerCalender from "../../screens/OfficerCalender";
 import Bookings from "../../screens/Bookings";
 import CompletedTours from "../../screens/CompletedTours";
+import EditBookings from "../../screens/EditBookings";
 
 const Stack = createNativeStackNavigator();
 function Router(props) {
@@ -55,6 +56,11 @@ function Router(props) {
           name="CompletedTours"
           options={{ headerShown: false }}
           component={CompletedTours}
+        />
+        <Stack.Screen
+          name="EditBookings"
+          options={{ headerShown: false }}
+          component={EditBookings}
         />
       </Stack.Navigator>
     </NavigationContainer>

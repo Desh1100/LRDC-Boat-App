@@ -113,7 +113,8 @@ const Bookings = ({ navigation }) => {
                 <View style={{ left: 220, flexDirection: "row" }}>
                   <TouchableOpacity
                     onPress={() => {
-                      console.log("Delete pressed for item:", item);
+                      navigation.navigate("EditBookings");
+                      // console.log("Item pressed:", item);
                     }}
                     style={{
                       marginLeft: 20,
@@ -121,7 +122,13 @@ const Bookings = ({ navigation }) => {
                       borderRadius: 7,
                     }}
                   >
-                    <Button title="Edit" color="blue" />
+                    <Button
+                      title="Edit"
+                      color="blue"
+                      onPress={() => {
+                        navigation.navigate("EditBookings", { id: item.id });
+                      }}
+                    />
                   </TouchableOpacity>
                   <TouchableOpacity
                     style={{

@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
 
   bg: {
-    borderRadius: Border.br_6xl,
+    // borderRadius: Border.br_6xl,
     backgroundColor: Color.colorFloralwhite_100,
     flex: 1,
     width: "100%",
