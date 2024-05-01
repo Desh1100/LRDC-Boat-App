@@ -18,13 +18,11 @@ export default function App({ navigation }) {
       >
         <Marker
           coordinate={{ latitude: 6.903471, longitude: 79.907679 }}
-          title={"Your Marker Title"}
-          description={"Diyathma Boat"}
+          title={"Diyathma Boate"}
         />
         <Marker
           coordinate={{ latitude: 6.904377, longitude: 79.907877 }}
-          title={"Marker 2 Title"}
-          description={"boat 1"}
+          title={"boat"}
         />
 
         <TouchableOpacity onPress={() => navigation.navigate("OHome")}>

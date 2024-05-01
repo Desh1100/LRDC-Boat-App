@@ -103,27 +103,42 @@ const Bookings = ({ navigation }) => {
                   padding: 20,
                   backgroundColor: Color.colorPalegoldenrod1,
                   borderRadius: 10,
+                  flexDirection: "row",
                 }}
               >
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                  Date: {item.date}
-                </Text>
-                <Text>Name: {item.name}</Text>
-                <Text>Phone Number: {item.telNum}</Text>
-                <View style={{ left: 220, flexDirection: "row" }}>
+                <View style={{ paddingRight: 50 }}>
+                  <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                    Date: {item.date} - {item.time}
+                  </Text>
+                  <View style={{ flexDirection: "row", paddingBottom: 5 }}>
+                    <Text>{item.package}</Text>
+                    <Text> , </Text>
+                    <Text>{item.ride}</Text>
+                  </View>
+                  <Text>Name : {item.name} </Text>
+                  <Text>Phone Number: {item.telNum}</Text>
+                  <Text>
+                    Adults : {item.adults} / Children: {item.children}
+                  </Text>
+                  <Text>Note : {item.note}</Text>
+                </View>
+                <View>
                   <TouchableOpacity
                     onPress={() => {
                       navigation.navigate("EditBookings");
                       // console.log("Item pressed:", item);
                     }}
                     style={{
-                      marginLeft: 20,
+                      margin: 20,
+                      // paddingHorizontal: 0,
                       backgroundColor: "white",
                       borderRadius: 7,
+                      marginBottom: 3,
+                      marginTop: 15,
                     }}
                   >
                     <Button
-                      title="Edit"
+                      title="Edit  "
                       color="blue"
                       onPress={() => {
                         navigation.navigate("EditBookings", { id: item.id });
@@ -135,6 +150,7 @@ const Bookings = ({ navigation }) => {
                       marginLeft: 5,
                       backgroundColor: "white",
                       borderRadius: 7,
+                      margin: 20,
                     }}
                   >
                     <Button
