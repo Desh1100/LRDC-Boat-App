@@ -17,15 +17,31 @@ const CalendarScreen = () => {
   const fetchMarkedDates = async () => {
     try {
       const datesSnapshot = await getDocs(collection(fdb, "Dates"));
+      const completedDatesSnapshot = await getDocs(
+        collection(fdb, "Completed")
+      );
       const markedDates = {};
+
+      // Mark dates from "Dates" collection as blue
       datesSnapshot.forEach((doc) => {
         const date = doc.id.split(".").reverse().join("-");
         markedDates[date] = {
           selected: true,
           marked: true,
-          selectedColor: "blue",
+          selectedColor: "#e62e4a",
         };
       });
+
+      // Mark dates from "Completed" collection as red
+      completedDatesSnapshot.forEach((doc) => {
+        const date = doc.id.split(".").reverse().join("-");
+        markedDates[date] = {
+          selected: true,
+          marked: true,
+          selectedColor: "#2ee68f",
+        };
+      });
+
       setMarkedDates(markedDates);
     } catch (error) {
       console.error("Error fetching marked dates:", error);
@@ -64,7 +80,7 @@ const CalendarScreen = () => {
     <View style={styles.container}>
       <Calendar
         onDayPress={handleDayPress}
-        current="2024-04-20"
+        current="2024-05-20"
         theme={styles.calendarTheme}
         markedDates={markedDates}
         minDate="2024-04-01"
@@ -91,6 +107,12 @@ const CalendarScreen = () => {
           </View>
         </View>
       </Modal>
+      <View style={styles.legendContainer}>
+        <View style={[styles.legendItem, { backgroundColor: "red" }]} />
+        <Text style={styles.legendText}>Book Tours</Text>
+        <View style={[styles.legendItem, { backgroundColor: "#2ee68f" }]} />
+        <Text style={styles.legendText}>Completed Tours</Text>
+      </View>
     </View>
   );
 };
@@ -100,9 +122,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#e0dede",
   },
   calendarTheme: {
-    calendarBackground: "#f0f0f0",
+    calendarBackground: "#ffffff",
     textSectionTitleColor: "#b6c1cd",
     selectedDayBackgroundColor: "#00adf5",
     selectedDayTextColor: "#ffffff",
@@ -115,7 +138,8 @@ const styles = StyleSheet.create({
     disabledArrowColor: "#d9e1e8",
     monthTextColor: "blue",
     indicatorColor: "blue",
-
+    borderWidth: 10,
+    borderColor: "black",
     textDayFontWeight: "300",
     textMonthFontWeight: "bold",
     textDayHeaderFontWeight: "300",
@@ -143,6 +167,22 @@ const styles = StyleSheet.create({
   todoItem: {
     fontSize: 16,
     marginVertical: 5,
+  },
+  legendContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 50,
+  },
+  legendItem: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    marginRight: 5,
+    marginLeft: 10,
+  },
+  legendText: {
+    marginLeft: 5,
   },
 });
 
