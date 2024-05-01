@@ -49,8 +49,12 @@ const OfficerHome = ({ navigation }) => {
             color="black"
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.box}>
-          <MaterialIcons name="message" size={65} color="black" />
+        <TouchableOpacity
+          style={styles.box}
+          onPress={() => navigation.navigate("CompletedTours")}
+        >
+          {/* <MaterialIcons name="message" size={65} color="black" /> */}
+          <Ionicons name="checkmark-done-circle" size={68} color="black" />
         </TouchableOpacity>
       </View>
     </View>

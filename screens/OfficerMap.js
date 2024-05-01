@@ -16,6 +16,17 @@ export default function App({ navigation }) {
           longitudeDelta: 0.00421,
         }}
       >
+        <Marker
+          coordinate={{ latitude: 6.903471, longitude: 79.907679 }}
+          title={"Your Marker Title"}
+          description={"Diyathma Boat"}
+        />
+        <Marker
+          coordinate={{ latitude: 6.904377, longitude: 79.907877 }}
+          title={"Marker 2 Title"}
+          description={"boat 1"}
+        />
+
         <TouchableOpacity onPress={() => navigation.navigate("OHome")}>
           <Ionicons
             name="arrow-back-circle"

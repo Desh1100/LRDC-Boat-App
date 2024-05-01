@@ -77,7 +77,7 @@ const Bookings = ({ navigation }) => {
           <Text style={{ fontSize: 18, fontWeight: "bold" }}>
             LRDC BOAT APP
           </Text>
-          <Text>Home</Text>
+          <Text>Bookings</Text>
         </View>
 
         <FlatList
