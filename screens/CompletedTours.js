@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Image } from "expo-image";
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
 import { fdb } from "../firebaseconfig";
+import { Ionicons } from "@expo/vector-icons";
+
 import {
   getDocs,
   collection,
@@ -20,7 +22,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-const OICHome = ({ navigation }) => {
+const CompletedTours = ({ navigation }) => {
   const [bookings, setBookings] = React.useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -36,7 +38,7 @@ const OICHome = ({ navigation }) => {
   React.useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const bookingsCollection = await getDocs(collection(fdb, "Dates"));
+        const bookingsCollection = await getDocs(collection(fdb, "Completed"));
         const bookingData = bookingsCollection.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -124,37 +126,26 @@ const OICHome = ({ navigation }) => {
                 style={{
                   margin: 10,
                   padding: 20,
-                  backgroundColor: Color.colorPalegoldenrod1,
+                  backgroundColor: Color.colorPalegoldenrod2,
                   borderRadius: 10,
                 }}
               >
-                {loading && (
-                  <View style={styles.loading}>
-                    <ActivityIndicator size="large" color="#0000ff" />
+                <View style={{ flexDirection: "row" }}>
+                  <View>
+                    <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                      Date: {item.date}
+                    </Text>
+                    <Text>Name: {item.name}</Text>
+                    <Text>Phone Number: {item.telNum}</Text>
                   </View>
-                )}
 
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                  Date: {item.date}
-                </Text>
-                <Text>Name: {item.name}</Text>
-                <Text>Phone Number: {item.telNum}</Text>
-                <View style={{ left: 270, flexDirection: "row" }}>
-                  <TouchableOpacity
-                    style={{
-                      marginLeft: 5,
-                      backgroundColor: "white",
-                      borderRadius: 7,
-                    }}
-                  >
-                    <Button
-                      title="Done"
-                      color="blue"
-                      onPress={() => {
-                        completeBooking(item.id, item);
-                      }}
+                  <View style={{ left: 130, flexDirection: "row" }}>
+                    <Ionicons
+                      name="checkmark-done-circle-outline"
+                      size={45}
+                      color="green"
                     />
-                  </TouchableOpacity>
+                  </View>
                 </View>
               </View>
             </TouchableOpacity>
@@ -228,4 +219,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OICHome;
+export default CompletedTours;

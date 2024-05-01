@@ -15,6 +15,7 @@ export const Color = {
   colorGainsboro_100: "#d9d9d9",
   colorPalegoldenrod: "#f4df99",
   colorPalegoldenrod1: "#dbdbdb",
+  colorPalegoldenrod2: "#c7ffe4",
 };
 /* border radiuses */
 export const Border = {

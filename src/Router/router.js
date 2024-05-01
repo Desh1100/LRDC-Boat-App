@@ -9,6 +9,7 @@ import OICHome from "../../screens/OICHome";
 import OfficerMap from "../../screens/OfficerMap";
 import OfficerCalender from "../../screens/OfficerCalender";
 import Bookings from "../../screens/Bookings";
+import CompletedTours from "../../screens/CompletedTours";
 
 const Stack = createNativeStackNavigator();
 function Router(props) {
@@ -49,6 +50,11 @@ function Router(props) {
           name="Bookings"
           options={{ headerShown: false }}
           component={Bookings}
+        />
+        <Stack.Screen
+          name="CompletedTours"
+          options={{ headerShown: false }}
+          component={CompletedTours}
         />
       </Stack.Navigator>
     </NavigationContainer>
