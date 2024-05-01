@@ -24,8 +24,10 @@ const CalendarScreen = () => {
 
       // Mark dates from "Dates" collection as blue
       datesSnapshot.forEach((doc) => {
-        const date = doc.id.split(".").reverse().join("-");
-        markedDates[date] = {
+        const data = doc.data();
+        const date = data.date;
+        const date1 = date.split(".").reverse().join("-");
+        markedDates[date1] = {
           selected: true,
           marked: true,
           selectedColor: "#e62e4a",
@@ -34,8 +36,10 @@ const CalendarScreen = () => {
 
       // Mark dates from "Completed" collection as red
       completedDatesSnapshot.forEach((doc) => {
-        const date = doc.id.split(".").reverse().join("-");
-        markedDates[date] = {
+        const data = doc.data();
+        const date = data.date;
+        const date1 = date.split(".").reverse().join("-");
+        markedDates[date1] = {
           selected: true,
           marked: true,
           selectedColor: "#2ee68f",
