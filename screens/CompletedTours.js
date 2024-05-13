@@ -162,6 +162,9 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "20%",
     backgroundColor: Color.colorPalegoldenrod,
+    borderBottomWidth: 5,
+    borderRightWidth: 2,
+    borderColor: "#525252",
   },
   lrdcLogo3: {
     top: "20%",

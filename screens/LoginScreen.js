@@ -73,7 +73,7 @@ function LoginScreen({ navigation }) {
       <Image
         style={{
           height: "7%",
-          width: "50%",
+          width: "60%",
           marginTop: "40%",
         }}
         source={require("../assets/1543918947img311.png")}
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     width: "80%",
     alignSelf: "center",
     backgroundColor: "#D9D9D9",
-    borderRadius: "25",
+    // borderRadius: "25",
     height: "48%",
   },
 
