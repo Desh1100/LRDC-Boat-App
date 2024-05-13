@@ -24,8 +24,8 @@ const Splash = () => {
       />
       <Image
         style={{
-          height: 50,
-          width: "65%",
+          height: "9%",
+          width: "70%",
           marginTop: "90%",
         }}
         // resizeMode="cover"
@@ -37,15 +37,10 @@ const Splash = () => {
 
 const styles = StyleSheet.create({
   lrdcLogo1: {
-    width: 150,
+    width: 151,
     height: 150,
   },
-  img31Icon: {
-    // alignSelf: "stretch",
-    height: 89,
-    width: "100%",
-    marginTop: "80%",
-  },
+
   bg: {
     borderRadius: Border.br_6xl,
     backgroundColor: "#fdfbf0",

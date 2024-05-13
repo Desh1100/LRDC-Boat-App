@@ -4,7 +4,7 @@
     "slug": "lrdc_boat_app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -18,12 +18,28 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCalendarsUsageDescription": "The app needs to access your calendar.",
+        "NSRemindersUsageDescription": "Allow $(PRODUCT_NAME) to access your reminders",
+        "NSCalendarsFullAccessUsageDescription": "The app needs to access your calendar.",
+        "NSRemindersFullAccessUsageDescription": "Allow $(PRODUCT_NAME) to access your reminders"
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "permissions": [
+        "android.permission.READ_CALENDAR",
+        "android.permission.WRITE_CALENDAR"
+      ],
+      "package": "com.desh1100.lrdc_boat_app",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDGw8jnvgSu6kHqe1CD-UrT8wDHsYLnH_E"
+        }
       }
     },
     "web": {
@@ -36,7 +52,11 @@
           "calendarPermission": "The app needs to access your calendar."
         }
       ]
-    ]
-
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "742508ca-0f58-4e4d-9e24-759255350c26"
+      }
+    }
   }
 }

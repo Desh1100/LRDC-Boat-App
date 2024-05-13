@@ -31,7 +31,7 @@ const OfficerHome = ({ navigation }) => {
             onPress={() => navigation.navigate("Bookings")}
           >
             <Ionicons name="bookmarks" size={65} color="black" />
-            <Text style={{ paddingTop: 10 }}>Bookings</Text>
+            <Text style={{ paddingTop: 10, left: 9 }}>Bookings</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.box}>
@@ -39,7 +39,7 @@ const OfficerHome = ({ navigation }) => {
             onPress={() => navigation.navigate("OfficerCalender")}
           >
             <FontAwesome name="calendar" size={63} color="black" />
-            <Text style={{ paddingTop: 15 }}>Calender</Text>
+            <Text style={{ paddingTop: 15, left: 8 }}>Calender</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -61,7 +61,7 @@ const OfficerHome = ({ navigation }) => {
             {/* <MaterialIcons name="message" size={65} color="black" /> */}
             <Ionicons name="checkmark-done-circle" size={68} color="black" />
           </TouchableOpacity>
-          <Text style={{ paddingTop: 15 }}>Completed Tours</Text>
+          <Text style={{ paddingTop: 15, left: 17 }}>Completed Tours</Text>
         </View>
       </View>
     </View>
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#d9dbdb",
+    backgroundColor: "#ffff",
   },
 });
 
