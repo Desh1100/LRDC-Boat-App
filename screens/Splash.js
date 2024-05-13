@@ -19,13 +19,13 @@ const Splash = () => {
     <View style={styles.bg}>
       <Image
         style={styles.lrdcLogo1}
-        resizeMode="cover"
+        // resizeMode="cover"
         source={require("../assets/lrdclogo1.png")}
       />
       <Image
         style={{
           height: 50,
-          width: "55%",
+          width: "65%",
           marginTop: "90%",
         }}
         // resizeMode="cover"
@@ -37,8 +37,8 @@ const Splash = () => {
 
 const styles = StyleSheet.create({
   lrdcLogo1: {
-    width: "35%",
-    height: "30%",
+    width: 150,
+    height: 150,
   },
   img31Icon: {
     // alignSelf: "stretch",

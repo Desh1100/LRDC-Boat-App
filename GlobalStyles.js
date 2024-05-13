@@ -13,7 +13,7 @@ export const Color = {
   colorBlanchedalmond: "#e1d8bc",
   colorBlack: "#000",
   colorGainsboro_100: "#d9d9d9",
-  colorPalegoldenrod: "#f4df99",
+  colorPalegoldenrod: "#f7ab39",
   colorPalegoldenrod1: "#dbdbdb",
   colorPalegoldenrod2: "#c7ffe4",
 };

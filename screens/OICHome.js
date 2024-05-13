@@ -135,10 +135,16 @@ const OICHome = ({ navigation }) => {
                 )}
 
                 <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                  Date: {item.date}
+                  Date: {item.date} - {item.time}
+                </Text>
+                <Text style={{ paddingBottom: 10 }}>
+                  {item.package} , {item.ride}
                 </Text>
                 <Text>Name: {item.name}</Text>
                 <Text>Phone Number: {item.telNum}</Text>
+                <Text>
+                  Adults : {item.adults} / Children: {item.children}
+                </Text>
                 <View style={{ left: 270, flexDirection: "row" }}>
                   <TouchableOpacity
                     style={{
@@ -171,6 +177,9 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "20%",
     backgroundColor: Color.colorPalegoldenrod,
+    borderBottomWidth: 5,
+    borderRightWidth: 2,
+    borderColor: "#525252",
   },
   lrdcLogo3: {
     top: "20%",
