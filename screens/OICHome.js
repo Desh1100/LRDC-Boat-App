@@ -102,71 +102,66 @@ const OICHome = ({ navigation }) => {
           </Text>
           <Text>OIC Home</Text>
         </View>
-
-        <FlatList
-          style={{
-            position: "absolute",
-            width: "100%",
-            // height: "72%",
-            marginTop: "40%",
-            marginBottom: 200,
-          }}
-          data={bookings}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("OfficerCalender");
-                console.log("Item pressed:", item);
+      </View>
+      <FlatList
+        style={{
+          flex: 1,
+        }}
+        data={bookings}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("OfficerCalender");
+              console.log("Item pressed:", item);
+            }}
+          >
+            <View
+              style={{
+                margin: 10,
+                padding: 20,
+                backgroundColor: Color.colorPalegoldenrod1,
+                borderRadius: 10,
               }}
             >
-              <View
-                style={{
-                  margin: 10,
-                  padding: 20,
-                  backgroundColor: Color.colorPalegoldenrod1,
-                  borderRadius: 10,
-                }}
-              >
-                {loading && (
-                  <View style={styles.loading}>
-                    <ActivityIndicator size="large" color="#0000ff" />
-                  </View>
-                )}
-
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
-                  Date: {item.date} - {item.time}
-                </Text>
-                <Text style={{ paddingBottom: 10 }}>
-                  {item.package} , {item.ride}
-                </Text>
-                <Text>Name: {item.name}</Text>
-                <Text>Phone Number: {item.telNum}</Text>
-                <Text>
-                  Adults : {item.adults} / Children: {item.children}
-                </Text>
-                <View style={{ left: 270, flexDirection: "row" }}>
-                  <TouchableOpacity
-                    style={{
-                      marginLeft: 5,
-                      backgroundColor: "white",
-                      borderRadius: 7,
-                    }}
-                  >
-                    <Button
-                      title="Done"
-                      color="blue"
-                      onPress={() => {
-                        completeBooking(item.id, item);
-                      }}
-                    />
-                  </TouchableOpacity>
+              {loading && (
+                <View style={styles.loading}>
+                  <ActivityIndicator size="large" color="#0000ff" />
                 </View>
+              )}
+
+              <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                Date: {item.date} - {item.time}
+              </Text>
+              <Text style={{ paddingBottom: 10 }}>
+                {item.package} , {item.ride}
+              </Text>
+              <Text>Name: {item.name}</Text>
+              <Text>Phone Number: {item.telNum}</Text>
+              <Text>
+                Adults : {item.adults} / Children: {item.children}
+              </Text>
+              <View style={{ left: 270, flexDirection: "row" }}>
+                <TouchableOpacity
+                  style={{
+                    marginLeft: 5,
+                    backgroundColor: "white",
+                    borderRadius: 7,
+                  }}
+                >
+                  <Button
+                    title="Done"
+                    color="blue"
+                    onPress={() => {
+                      completeBooking(item.id, item);
+                    }}
+                  />
+                </TouchableOpacity>
               </View>
-            </TouchableOpacity>
-          )}
-        />
-      </View>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
     </View>
   );
 };

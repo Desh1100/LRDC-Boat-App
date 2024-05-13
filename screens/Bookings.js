@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image } from "expo-image";
+import { Image, Alert } from "react-native";
 import { Color, FontFamily, Border, FontSize } from "../GlobalStyles";
 import { fdb } from "../firebaseconfig";
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
@@ -9,8 +9,6 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  Button,
-  Alert,
 } from "react-native";
 
 const Bookings = ({ navigation }) => {
@@ -65,12 +63,40 @@ const Bookings = ({ navigation }) => {
       { cancelable: false }
     );
   };
+
+  const handleItemPress = (item) => {
+    // Display popup message with edit and delete buttons
+    Alert.alert(
+      "Booking Options",
+      "What would you like to do with this booking?",
+      [
+        {
+          text: "Edit",
+          onPress: () => {
+            navigation.navigate("EditBookings", { id: item.id });
+          },
+        },
+        {
+          text: "Delete",
+          onPress: () => {
+            deleteBooking(item.id);
+          },
+          style: "destructive",
+        },
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+      ],
+      { cancelable: true }
+    );
+  };
+
   return (
     <View style={styles.background}>
       <View style={styles.headerA}>
         <Image
           style={styles.lrdcLogo3}
-          // contentFit="cover"
           source={require("../assets/lrdc-logo-2.png")}
         />
         <View style={{ left: "25%", top: -28 }}>
@@ -84,21 +110,11 @@ const Bookings = ({ navigation }) => {
       <FlatList
         style={{
           flex: 1,
-          // position: "absolute",
-          width: "100%",
-          height: "72%",
-          // marginTop: "15%",
-          // marginBottom: 200,
         }}
         data={bookings}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("OfficerCalender");
-              console.log("Item pressed:", item);
-            }}
-          >
+          <TouchableOpacity onPress={() => handleItemPress(item)}>
             <View
               style={{
                 margin: 10,
@@ -123,46 +139,6 @@ const Bookings = ({ navigation }) => {
                   Adults : {item.adults} / Children: {item.children}
                 </Text>
                 <Text>Note : {item.note}</Text>
-              </View>
-              <View>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate("EditBookings");
-                    // console.log("Item pressed:", item);
-                  }}
-                  style={{
-                    margin: 20,
-                    // paddingHorizontal: 0,
-                    backgroundColor: "white",
-                    borderRadius: 7,
-                    marginBottom: 3,
-                    marginTop: 15,
-                  }}
-                >
-                  <Button
-                    title="Edit  "
-                    color="blue"
-                    onPress={() => {
-                      navigation.navigate("EditBookings", { id: item.id });
-                    }}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={{
-                    marginLeft: 5,
-                    backgroundColor: "white",
-                    borderRadius: 7,
-                    margin: 20,
-                  }}
-                >
-                  <Button
-                    title="Delete"
-                    color="red"
-                    onPress={() => {
-                      deleteBooking(item.date);
-                    }}
-                  />
-                </TouchableOpacity>
               </View>
             </View>
           </TouchableOpacity>
@@ -190,28 +166,6 @@ const styles = StyleSheet.create({
     height: "65%",
     marginLeft: 10,
   },
-  lrdcBoatAppTypo: {
-    textAlign: "left",
-    color: Color.colorBlack,
-    fontFamily: FontFamily.inter,
-    position: "absolute",
-  },
-
-  lrdcBoatApp: {
-    top: 76,
-    left: 136,
-    fontSize: FontSize.size_5xl,
-  },
-  reservations: {
-    top: 105,
-    left: 230,
-    fontSize: FontSize.size_base,
-  },
-
-  rectangleView: {
-    top: 401,
-  },
-
   background: {
     borderRadius: Border.br_6xl,
     backgroundColor: Color.colorFloralwhite_100,
